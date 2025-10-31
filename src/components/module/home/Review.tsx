@@ -65,7 +65,7 @@ const reviews = [
 
 export default function ReviewSection() {
 
-  const duplicatedReviews = [...reviews, ...reviews];
+  const duplicatedReviews = [...reviews, ...reviews, ...reviews];
 
   return (
     <section className="container">
