@@ -8,13 +8,13 @@ export default function PublicNavbar() {
 
   const navLinks = <>
     <Link href={"/"} className="block hover:text-blue-600 text-center">Home</Link>
-    <a href="#services" className="block hover:text-blue-600 text-center">Services</a>
-    <a href="#doctors" className="block hover:text-blue-600 text-center">Doctors</a>
-    <a href="#contact" className=" block hover:text-blue-600 text-center">Contact</a>
+    <a href="#services" className="block hover:text-blue-600 text-center">Consultation</a>
+    <a href="#contact" className=" block hover:text-blue-600 text-center">Diogonostics</a>
+    <a href="#doctors" className="block hover:text-blue-600 text-center">Heath Plans</a>
   </>
 
   return (
-    <nav className="bg-white shadow-md px-6 py-4">
+    <nav className="sticky  top-0 z-50 bg-white shadow-md px-6 py-4">
       <div className="flex justify-between items-center">
         {/* Logo */}
         <div className="text-2xl font-bold text-blue-700">EMS HOS</div>
