@@ -31,7 +31,7 @@ export default function AiSuggest() {
           <Button onClick={handleSuggest} className="w-full">
             Suggest Treatment
           </Button>
-          <p className='text-muted-foreground pt-2'>✅Powered by advance ai model for matching doctor.</p>
+          <p className='text-sm text-muted-foreground pt-2'>✅Powered by advance ai model for finding doctor.</p>
         </CardFooter>
       </Card>
     </div>

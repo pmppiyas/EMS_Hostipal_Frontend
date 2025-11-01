@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/button";
 export default function Hero() {
   return (
     <section
-      className="min-h-[calc(100vh-70px)] w-full bg-linear-to-t from-primary/20 via-background to-secondary/20  flex items-center justify-center"
+      className="min-h-[calc(100vh-70px)] w-full bg-linear-to-t from-primary/20 via-background to-secondary/20  flex items-center justify-center "
     >
-      <div className="container flex flex-col p-6 md:p-10 lg:p-12 md:flex-row items-center justify-between gap-10  w-full">
+      <div className="container flex flex-col p-6 md:p-10 lg:p-12 md:flex-row items-center justify-between gap-10  w-full ">
         {/* Left Side */}
-        <div className="flex-1 space-y-6">
+        <div className="flex-1 space-y-6  w-full">
           <h1 className="text-primary/70 block">
             Welcome to,
             <span className="block text-4xl lg:text-5xl font-bold text-primary">

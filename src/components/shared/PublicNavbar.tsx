@@ -37,7 +37,7 @@ export default function PublicNavbar() {
             Book Appointment
           </Button>
           <Button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
-            Login
+            <Link href="/login">      Login</Link>
           </Button>
         </div>
       </div>
@@ -52,9 +52,8 @@ export default function PublicNavbar() {
           </Button>
 
           <Button className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
-            Login
+            <Link href="/login">      Login</Link>
           </Button>
-
         </div>
       )}
     </nav>
