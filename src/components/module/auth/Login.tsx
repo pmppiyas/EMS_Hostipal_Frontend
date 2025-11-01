@@ -51,6 +51,7 @@ export default function LoginForm() {
       }
 
     } catch (err) {
+      toast.error("Login failed")
       console.log(err)
     } finally {
       setTimeout(() => setLoading(false), 1000);
