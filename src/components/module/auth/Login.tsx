@@ -12,7 +12,9 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { checkAuthStatus } from '@/components/utilities/checkAuth';
 import { loginUser } from '@/components/utilities/login';
+import { Role } from '@/types/types';
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -42,10 +44,31 @@ export default function LoginForm() {
     try {
       setLoading(true);
       const login = await loginUser(data)
-      console.log(login)
+
       if (login.success) {
         toast.success(login.message)
-        router.push("/")
+        const authStatus = await checkAuthStatus();
+        console.log(authStatus.user)
+        if (authStatus.isAuthenticated && authStatus.user) {
+          const { role } = authStatus.user;
+          console.log(Role.ADMIN === role);
+          switch (role) {
+            case Role.ADMIN:
+              router.push("/dashboard/admin");
+              break
+            case Role.DOCTOR:
+              router.push("/dashboard/doctor");
+              break;
+            case Role.PATIENT:
+              router.push("/dashboard/patient")
+              break;
+            default:
+              router.push("/")
+              break;
+          }
+        } else {
+          toast.error("Failed to retrieve user's information.")
+        }
       } else {
         toast.error(login.message)
       }

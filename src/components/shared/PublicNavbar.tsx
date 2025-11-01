@@ -7,10 +7,11 @@ export default function PublicNavbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = <>
-    <Link href={"/"} className="block hover:text-blue-600 text-center">Home</Link>
-    <a href="#services" className="block hover:text-blue-600 text-center">Consultation</a>
-    <a href="#contact" className=" block hover:text-blue-600 text-center">Diogonostics</a>
-    <a href="#doctors" className="block hover:text-blue-600 text-center">Heath Plans</a>
+    <Link href="/" className="block hover:text-blue-600 text-center" onClick={() => setIsOpen(false)}>Home</Link>
+    <Link href="/dashboard" className="block hover:text-blue-600 text-center" onClick={() => setIsOpen(false)}>Dashboard</Link>
+    <a href="#services" className="block hover:text-blue-600 text-center" onClick={() => setIsOpen(false)}>Consultation</a>
+    <a href="#contact" className="block hover:text-blue-600 text-center" onClick={() => setIsOpen(false)}>Diogonostics</a>
+    <a href="#doctors" className="block hover:text-blue-600 text-center" onClick={() => setIsOpen(false)}>Health Plans</a>
   </>
 
   return (
@@ -36,8 +37,8 @@ export default function PublicNavbar() {
           <Button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
             Book Appointment
           </Button>
-          <Button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
-            <Link href="/login">      Login</Link>
+          <Button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition" asChild>
+            <Link href="/login" >      Login</Link>
           </Button>
         </div>
       </div>
@@ -51,8 +52,8 @@ export default function PublicNavbar() {
             Book Appointment
           </Button>
 
-          <Button className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
-            <Link href="/login">      Login</Link>
+          <Button className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition" asChild>
+            <Link href="/login" onClick={() => setIsOpen(false)}>      Login</Link>
           </Button>
         </div>
       )}
