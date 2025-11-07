@@ -1,6 +1,10 @@
+import DashbaordComponent from '@/components/module/dashboard/dashboard';
+
 
 export default function DashboardPage() {
   return (
-    <div>DashboardPage</div>
+    <div>
+      <DashbaordComponent />
+    </div>
   )
 }

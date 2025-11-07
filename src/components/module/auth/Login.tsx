@@ -12,8 +12,6 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { checkAuthStatus } from '@/components/utilities/checkAuth';
-import { loginUser } from '@/components/utilities/login';
 import { Role } from '@/types/types';
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
@@ -22,6 +20,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
 import { z } from "zod";
+import { checkAuthStatus } from '../../../utilities/checkAuth';
+import { loginUser } from '../../../utilities/login';
 
 
 
