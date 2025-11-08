@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { getMe } from '@/services/auth/getMe';
+import { loginUser } from '@/services/auth/login';
 import { Role } from '@/types/types';
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
@@ -20,8 +22,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
 import { z } from "zod";
-import { checkAuthStatus } from '../../../utilities/checkAuth';
-import { loginUser } from '../../../utilities/login';
 
 
 
@@ -47,7 +47,7 @@ export default function LoginForm() {
 
       if (login.success) {
         toast.success(login.message)
-        const authStatus = await checkAuthStatus();
+        const authStatus = await getMe();
         console.log(authStatus.user)
         if (authStatus.isAuthenticated && authStatus.user) {
           const { role } = authStatus.user;

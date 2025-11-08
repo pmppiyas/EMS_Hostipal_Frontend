@@ -1,6 +1,8 @@
+"use server";
+
 import { ENV } from "@/config/env";
 
-export const checkAuthStatus = async () => {
+export const getMe = async () => {
   try {
     const res = await fetch(`${ENV.BACKEND_URL}/auth/me`, {
       headers: {

@@ -1,8 +1,8 @@
 import { ENV } from "@/config/env";
 
-export const registerUser = async (data: any) => {
+export const registerPatient = async (data: any) => {
   try {
-    const res = await fetch(`${ENV.BACKEND_URL}/auth/create_patient`, {
+    const res = await fetch(`${ENV.BACKEND_URL}/user/create_patient`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),

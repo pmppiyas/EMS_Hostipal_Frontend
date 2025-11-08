@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { registerUser } from '@/utilities/signup';
+import { registerPatient } from '@/services/auth/signup';
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -38,7 +38,7 @@ export default function SignupForm() {
   const onSubmit = async (data: SignupFormData) => {
     try {
       setLoading(true);
-      const result = await registerUser(data);
+      const result = await registerPatient(data);
 
       if (result.success) {
         toast.success(result.message);
