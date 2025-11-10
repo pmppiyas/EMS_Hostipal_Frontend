@@ -1,15 +1,16 @@
 "use client";
 import { Button } from '@/components/ui/button';
+import { getMe } from '@/services/auth/getMe';
 import { logout } from '@/services/auth/louout';
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import toast from "react-hot-toast";
 
 
 export default function PublicNavbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState(true)
+  const [user, setUser] = useState(null)
   const router = useRouter();
   const navLinks = <>
     <Link href="/" className="block hover:text-blue-600 text-center" onClick={() => setIsOpen(false)}>Home</Link>
@@ -19,6 +20,20 @@ export default function PublicNavbar() {
     <a href="#doctors" className="block hover:text-blue-600 text-center" onClick={() => setIsOpen(false)}>Health Plans</a>
   </>
 
+
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     try {
+  //       const res = await getMe();
+
+  //       setUser(res.user);
+  //     } catch (error) {
+  //       setUser(null);
+  //     }
+  //   };
+  //   fetchUser();
+  // }, []);
+  // console.log(user)
 
   const handleLogout = async () => {
     try {

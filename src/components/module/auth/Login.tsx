@@ -12,9 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { getMe } from '@/services/auth/getMe';
 import { loginUser } from '@/services/auth/login';
-import { Role } from '@/types/types';
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -27,7 +25,7 @@ import { z } from "zod";
 
 type LoginFormData = z.infer<typeof loginSchema>;
 
-export default function LoginForm() {
+export default function LoginForm({ redirect }: { redirect: string }) {
   const [loading, setLoading] = useState(false);
   const router = useRouter()
   const {
@@ -47,28 +45,34 @@ export default function LoginForm() {
 
       if (login.success) {
         toast.success(login.message)
-        const authStatus = await getMe();
-        console.log(authStatus.user)
-        if (authStatus.isAuthenticated && authStatus.user) {
-          const { role } = authStatus.user;
-          console.log(Role.ADMIN === role);
-          switch (role) {
-            case Role.ADMIN:
-              router.push("/dashboard/admin");
-              break
-            case Role.DOCTOR:
-              router.push("/dashboard/doctor");
-              break;
-            case Role.PATIENT:
-              router.push("/dashboard/patient")
-              break;
-            default:
-              router.push("/")
-              break;
-          }
-        } else {
-          toast.error("Failed to retrieve user's information.")
-        }
+        router.push(redirect)
+        // if (redirect) {
+        //   router.push(redirect)
+        // } else {
+        //   router.push("/")
+        // }
+        // const authStatus = await getMe();
+        // console.log(authStatus.user)
+        // if (authStatus.isAuthenticated && authStatus.user) {
+        //   const { role } = authStatus.user;
+        //   console.log(Role.ADMIN === role);
+        //   switch (role) {
+        //     case Role.ADMIN:
+        //       router.push("/dashboard/admin");
+        //       break
+        //     case Role.DOCTOR:
+        //       router.push("/dashboard/doctor");
+        //       break;
+        //     case Role.PATIENT:
+        //       router.push("/dashboard/patient")
+        //       break;
+        //     default:
+        //       router.push("/")
+        //       break;
+        //   }
+        // } else {
+        //   toast.error("Failed to retrieve user's information.")
+        // }
       } else {
         toast.error(login.message)
       }

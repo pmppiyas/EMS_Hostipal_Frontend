@@ -1,9 +1,17 @@
-import LoginForm from '@/components/module/auth/Login'
+import LoginForm from '@/components/module/auth/Login';
 
-export default function LoginPage() {
+const LoginPage = async ({
+  searchParams
+}: { searchParams?: Promise<{ redirectTo?: string }> }) => {
+
+  const redirect = (await searchParams)?.redirectTo || "/";
+
   return (
     <div className='min-h-screen w-full flex  items-center justify-center '>
-      <LoginForm />
+      <LoginForm redirect={redirect} />
     </div>
   )
 }
+
+
+export default LoginPage;
