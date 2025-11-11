@@ -41,14 +41,13 @@ export default function SignupForm() {
       const result = await registerPatient(data);
 
       if (result.success) {
-        toast.success(result.message);
-        router.push("/login");
+        toast.success("Account created & logged in ✅");
+        router.push("/");
       } else {
         toast.error(result.message);
       }
     } catch (err) {
       toast.error("Signup failed");
-      console.log(err);
     } finally {
       setTimeout(() => setLoading(false), 1000);
     }

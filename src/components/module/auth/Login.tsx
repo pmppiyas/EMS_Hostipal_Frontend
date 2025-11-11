@@ -13,6 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { loginUser } from '@/services/auth/login';
+import { Role } from '@/types/types';
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -45,12 +46,13 @@ export default function LoginForm({ redirect }: { redirect: string }) {
 
       if (login.success) {
         toast.success(login.message)
+
         router.push(redirect)
-        // if (redirect) {
-        //   router.push(redirect)
-        // } else {
-        //   router.push("/")
-        // }
+        if (redirect) {
+          router.push(redirect)
+        } else {
+          router.push("/")
+        }
         // const authStatus = await getMe();
         // console.log(authStatus.user)
         // if (authStatus.isAuthenticated && authStatus.user) {
@@ -72,8 +74,8 @@ export default function LoginForm({ redirect }: { redirect: string }) {
         //   }
         // } else {
         //   toast.error("Failed to retrieve user's information.")
-        // }
-      } else {
+      }
+      else {
         toast.error(login.message)
       }
 

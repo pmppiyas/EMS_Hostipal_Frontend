@@ -1,4 +1,5 @@
 import { ENV } from "@/config/env";
+import { loginUser } from "@/services/auth/login";
 
 export const registerPatient = async (data: any) => {
   try {
@@ -8,8 +9,19 @@ export const registerPatient = async (data: any) => {
       body: JSON.stringify(data),
     });
 
-    return await res.json();
-  } catch (err: any) {
+    const result = await res.json();
+
+    if (result.success) {
+      const loginResult = await loginUser({
+        email: data.email,
+        password: data.password,
+      });
+
+      return loginResult;
+    }
+
+    return result;
+  } catch (err) {
     return { success: false, message: "Server error" };
   }
 };
