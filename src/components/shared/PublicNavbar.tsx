@@ -1,66 +1,68 @@
 "use client";
+
 import { Button } from '@/components/ui/button';
-import { getMe } from '@/services/auth/getMe';
 import { logout } from '@/services/auth/louout';
+import { getCookie } from '@/utils/tokenHandlers';
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from 'react';
 import toast from "react-hot-toast";
 
-
-export default function PublicNavbar() {
+const PublicNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState(null)
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const router = useRouter();
-  const navLinks = <>
-    <Link href="/" className="block hover:text-blue-600 text-center" onClick={() => setIsOpen(false)}>Home</Link>
-    <Link href="/dashboard" className="block hover:text-blue-600 text-center" onClick={() => setIsOpen(false)}>Dashboard</Link>
-    <a href="#services" className="block hover:text-blue-600 text-center" onClick={() => setIsOpen(false)}>Consultation</a>
-    <a href="#contact" className="block hover:text-blue-600 text-center" onClick={() => setIsOpen(false)}>Diogonostics</a>
-    <a href="#doctors" className="block hover:text-blue-600 text-center" onClick={() => setIsOpen(false)}>Health Plans</a>
-  </>
+  const pathname = usePathname();
 
 
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     try {
-  //       const res = await getMe();
-
-  //       setUser(res.user);
-  //     } catch (error) {
-  //       setUser(null);
-  //     }
-  //   };
-  //   fetchUser();
-  // }, []);
-  // console.log(user)
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const token = await getCookie("accessToken");
+        setIsAuthenticated(!!token);
+      } catch (err) {
+        console.error("Error checking auth:", err);
+        setIsAuthenticated(false);
+      }
+    };
+    checkAuth();
+  }, [pathname]);
 
   const handleLogout = async () => {
     try {
       const res = await logout();
       if (res.success) {
         toast.success(res.message);
-        router.push("/")
+        setIsAuthenticated(false);
+        router.push("/");
       } else {
-        toast.error(res.message)
+        toast.error(res.message);
       }
     } catch (err) {
-      toast.error("Logout failed")
-      console.log(err)
+      toast.error("Logout failed");
+      console.error(err);
     }
-  }
+  };
+
+  const navLinks = (
+    <>
+      <Link href="/" className="block hover:text-blue-600 text-center" onClick={() => setIsOpen(false)}>Home</Link>
+      <Link href="/dashboard" className="block hover:text-blue-600 text-center" onClick={() => setIsOpen(false)}>Dashboard</Link>
+      <a href="#services" className="block hover:text-blue-600 text-center" onClick={() => setIsOpen(false)}>Consultation</a>
+      <a href="#contact" className="block hover:text-blue-600 text-center" onClick={() => setIsOpen(false)}>Diagnostics</a>
+      <a href="#doctors" className="block hover:text-blue-600 text-center" onClick={() => setIsOpen(false)}>Health Plans</a>
+    </>
+  );
 
   return (
-    <nav className="sticky  top-0 z-50 bg-white shadow-md px-6 py-4">
+    <nav className="sticky top-0 z-50 bg-white shadow-md px-6 py-4">
       <div className="flex justify-between items-center">
         {/* Logo */}
-        <div className="bg-white text-2xl font-bold text-blue-700 ">EMS HOS</div>
+        <div className="bg-white text-2xl font-bold text-blue-700">EMS HOS</div>
 
         {/* Hamburger Icon */}
         <div className="md:hidden">
-          <Button onClick={() => setIsOpen(!isOpen)} variant={"outline"} >
-            ☰
-          </Button>
+          <Button onClick={() => setIsOpen(!isOpen)} variant="outline">☰</Button>
         </div>
 
         {/* Desktop Nav */}
@@ -68,14 +70,14 @@ export default function PublicNavbar() {
           {navLinks}
         </div>
 
-        {/* Button */}
-        <div className="hidden md:flex items-center space-x-4 ">
+        {/* Buttons */}
+        <div className="hidden md:flex items-center space-x-4">
           <Button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
             Book Appointment
           </Button>
 
-          {!user ? (
-            <Button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition" asChild>
+          {!isAuthenticated ? (
+            <Button asChild className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
               <Link href="/login" onClick={() => setIsOpen(false)}>Login</Link>
             </Button>
           ) : (
@@ -101,19 +103,25 @@ export default function PublicNavbar() {
             Book Appointment
           </Button>
 
-          {!user ?
-            <Button className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition" asChild>
-              <Link href="/login" onClick={() => setIsOpen(false)}>      Login</Link>
-            </Button> : <Button onClick={() => {
-              setIsOpen(false)
-              handleLogout()
-            }} className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition" >
+          {!isAuthenticated ? (
+            <Button asChild className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+              <Link href="/login" onClick={() => setIsOpen(false)}>Login</Link>
+            </Button>
+          ) : (
+            <Button
+              onClick={() => {
+                setIsOpen(false);
+                handleLogout();
+              }}
+              className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+            >
               Logout
             </Button>
-          }
-
+          )}
         </div>
       )}
     </nav>
   );
-}
+};
+
+export default PublicNavbar;
