@@ -46,9 +46,23 @@ export async function proxy(req: NextRequest) {
       (await cookieStore).delete("refreshToken");
       return NextResponse.redirect(new URL("/login", req.url));
     }
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     console.error("JWT Error:", error);
-    return NextResponse.redirect(new URL("/login", req.url));
+
+    const loginUrl = new URL("/login", req.url);
+
+    if (error.name === "TokenExpiredError") {
+      loginUrl.searchParams.set("error", "session_expired");
+    } else {
+      loginUrl.searchParams.set("error", "invalid_token");
+    }
+
+    const cookieStore = cookies();
+    (await cookieStore).delete("accessToken");
+    (await cookieStore).delete("refreshToken");
+
+    return NextResponse.redirect(loginUrl);
   }
 
   // Rule 3: Authenticated user trying to access /login or /signup → redirect to dashboard

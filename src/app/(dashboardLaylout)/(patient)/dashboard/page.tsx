@@ -1,8 +1,13 @@
+import { getUserInfo } from '@/services/auth/getUserInfo';
 
-export default function PatientDashboard
-  () {
-  return (
-    <div>PatientDashboard
-    </div>
-  )
-}
+const PatientDashboard =
+  async () => {
+
+    return (
+      <div>PatientDashboard
+      </div>
+    )
+  }
+
+
+export default PatientDashboard;
