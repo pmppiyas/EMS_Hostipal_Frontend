@@ -8,7 +8,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 
 export default function SiteHeader() {
   return (
-    <header className="flex items-center h-[--header-height] border-b px-4 gap-2">
+    <header className="flex items-center h-[--header-height] border-b p-4 gap-2">
       <SidebarTrigger className="-ml-1" />
 
       <Separator orientation="vertical" className="mx-2 hidden md:block" />

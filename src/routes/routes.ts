@@ -1,9 +1,38 @@
 import { NavItem } from "@/types/types";
 
 export const adminRoutes: NavItem[] = [
-  { title: "Dashboard", href: "/dashboard", iconName: "dashboard" },
-  { title: "Manage Users", href: "/dashboard/users", iconName: "users" },
-  { title: "Reports", href: "/dashboard/reports", iconName: "report" },
+  { title: "Dashboard", href: "/admin/dashboard", iconName: "IconBook" },
+
+  {
+    title: "Appointments",
+    href: "/admin/dashboard/appointment_management",
+    iconName: "IconClipboardDataFilled",
+  },
+  {
+    title: "Sehedules",
+    href: "/admin/dashboard/schedule_management",
+    iconName: "IconClock2",
+  },
+  {
+    title: "Specialities",
+    href: "/admin/dashboard/specialities_management",
+    iconName: "IconSchool",
+  },
+  {
+    title: "Doctors",
+    href: "/admin/dashboard/doctor_management",
+    iconName: "IconStethoscope",
+  },
+  {
+    title: "Patients",
+    href: "/admin/dashboard/pateint_management",
+    iconName: "IconUser",
+  },
+  {
+    title: "Admins",
+    href: "/admin/dashboard/admin_management",
+    iconName: "IconHeartCheck",
+  },
 ];
 
 export const doctorRoutes: NavItem[] = [
@@ -13,23 +42,36 @@ export const doctorRoutes: NavItem[] = [
 ];
 
 export const patientRoutes: NavItem[] = [
-  { title: "Dashboard", href: "/dashboard", iconName: "dashboard" },
+  { title: "Dashboard", href: "/dashboard", iconName: "IconDashboard" },
   {
     title: "Appointments",
-    href: "/dashboard/appointments",
-    iconName: "pointer",
+    href: "/dashboard/my_appointments",
+    iconName: "IconVocabulary",
   },
-  { title: "Medical Records", href: "/dashboard/records", iconName: "pointer" },
+  {
+    title: "Prescriptions",
+    href: "/dashboard/my_prescriptions",
+    iconName: "IconBook",
+  },
+  {
+    title: "Medical Records",
+    href: "/dashboard/my_medical_records",
+    iconName: "IconBook2",
+  },
 ];
 
 export const commonRoutes: NavItem[] = [
-  { title: "Setting", href: "/setting", iconName: "dashboard" },
+  { title: "Setting", href: "/setting", iconName: "IconSettings2" },
   {
-    title: "Appointments",
+    title: "Helpline",
     href: "/dashboard/appointments",
-    iconName: "pointer",
+    iconName: "IconPhoneCall",
   },
-  { title: "Medical Records", href: "/dashboard/records", iconName: "pointer" },
+  {
+    title: "Medical Records",
+    href: "/dashboard/records",
+    iconName: "IconDualScreenFilled",
+  },
 ];
 
 export const getRoutesByRole = (role: string): NavItem[] => {

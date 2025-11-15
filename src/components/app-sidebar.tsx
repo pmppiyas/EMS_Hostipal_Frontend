@@ -12,7 +12,7 @@ export default async function AppSidebar() {
     return null
   }
 
-  const routes = await getRoutesByRole(user.role);
+  const routes = getRoutesByRole(user.role);
 
   return (
     <Sidebar collapsible="offcanvas">
@@ -32,7 +32,7 @@ export default async function AppSidebar() {
                 key={item.href}
                 href={item.href}
                 title={item.title}
-                iconName={item.iconName}
+                iconName={item.iconName || ''}
               />
             ))}
           </nav>
@@ -43,7 +43,7 @@ export default async function AppSidebar() {
                 key={item.href}
                 href={item.href}
                 title={item.title}
-                iconName={item.iconName}
+                iconName={item.iconName || ''}
               />
             ))}
           </nav>
