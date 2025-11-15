@@ -2,8 +2,8 @@
 
 import ThemeToggle from '@/components/module/dashboard/ThemeToggle';
 import { Button } from '@/components/ui/button';
+import { getCookie } from '@/lib/tokenHandlers';
 import { logout } from '@/services/auth/louout';
-import { getCookie } from '@/utils/tokenHandlers';
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from 'react';

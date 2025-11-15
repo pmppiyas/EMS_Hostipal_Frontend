@@ -1,6 +1,6 @@
 import { ENV } from "@/config/env";
+import { getCookie } from "@/lib/tokenHandlers";
 import { IUserToken } from "@/types/types";
-import { getCookie } from "@/utils/tokenHandlers";
 import jwt, { JwtPayload } from "jsonwebtoken";
 
 export const getUserInfo = async (): Promise<IUserToken | null> => {

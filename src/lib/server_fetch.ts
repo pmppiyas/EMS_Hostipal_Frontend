@@ -1,5 +1,5 @@
 import { ENV } from "@/config/env";
-import { getCookie } from "@/utils/tokenHandlers";
+import { getCookie } from "@/lib/tokenHandlers";
 
 const serverFetchHelper = async (
   endpoint: string,

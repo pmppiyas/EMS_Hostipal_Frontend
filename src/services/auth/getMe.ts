@@ -1,7 +1,7 @@
 "use server";
 
 import { ENV } from "@/config/env";
-import { getCookies } from '@/utils/tokenHandlers';
+import { getCookies } from "@/lib/tokenHandlers";
 
 export const getMe = async () => {
   try {

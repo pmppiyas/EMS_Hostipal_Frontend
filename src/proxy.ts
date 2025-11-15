@@ -4,7 +4,7 @@ import {
   getRouteOwner,
   IRole,
   isAuthRoutes,
-} from "@/utils/auth";
+} from "@/lib/auth";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
