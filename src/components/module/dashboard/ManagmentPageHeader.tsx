@@ -35,11 +35,11 @@ const ManagementPageHeader = ({
   isLoading = false,
 }: IManagementPageHeaderProps) => {
   return (
-    <motion.header
-      initial={{ opacity: 0, y: -6 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.15 }}
-      className="pb-6 border-b flex flex-col gap-4"
+    <header
+      // initial={{ opacity: 0, y: 0 }}
+      // animate={{ opacity: 1, y: 0 }}
+      // transition={{ duration: 0 }}
+      className="pb-6 border-b flex flex-col gap-4 container max-w-7xl mx-auto"
     >
       {/* Breadcrumbs */}
       {breadcrumbs.length > 0 && (
@@ -114,7 +114,7 @@ const ManagementPageHeader = ({
       {showSearch && isLoading && (
         <div className="max-w-sm h-10 bg-muted animate-pulse rounded" />
       )}
-    </motion.header>
+    </header>
   );
 };
 

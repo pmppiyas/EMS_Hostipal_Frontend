@@ -37,7 +37,7 @@ function ManagementTable<T>({
 
   const hasActions = onView || onEdit || onDelete;
   return (
-    <div className="w-full overflow-x-auto border rounded-md">
+    <div className="w-full overflow-x-auto border rounded-md  max-w-7xl mx-auto">
       {isRefreshing && (
         <div>
           <h2>Loading</h2>
@@ -69,9 +69,9 @@ function ManagementTable<T>({
             ) : (
 
               data?.map((item) => (
-                <TableRow key={getRowKey(item)}>
+                <TableRow key={getRowKey(item)} >
                   {columns.map((col, idx) => (
-                    <TableCell key={idx} className={col.className}>
+                    <TableCell key={idx} className={`${col.className} `}>
                       {typeof col.accessor === "function"
                         ? col.accessor(item)
                         : String(item[col.accessor])}
