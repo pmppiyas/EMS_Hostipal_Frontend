@@ -37,7 +37,7 @@ function ManagementTable<T>({
 
   const hasActions = onView || onEdit || onDelete;
   return (
-    <div className="w-full overflow-x-auto border rounded-md  max-w-7xl mx-auto">
+    <div className="w-full overflow-x-scroll border rounded-md  max-w-7xl mx-auto px-2">
       {isRefreshing && (
         <div>
           <h2>Loading</h2>

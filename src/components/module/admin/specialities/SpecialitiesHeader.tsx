@@ -18,7 +18,7 @@ const SpecialitiesHeader = () => {
       router.refresh();
     });
   };
-  return (
+            return (
     <>
       <SpecialitiesFromDiolog
         open={isDialogOpen}
